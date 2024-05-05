@@ -2,7 +2,7 @@
 
 namespace Domain.Common;
 
-public abstract class BaseEntity : BaseEntity<int>
+public abstract class BaseEntity : BaseEntity<Guid>
 {
 }
 

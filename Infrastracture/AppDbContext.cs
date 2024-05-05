@@ -12,7 +12,10 @@ public class AppDbContext : DbContext, IAppDbContext
     {
     }
 
-    public DbSet<Todo> Todos => Set<Todo>();
+    public DbSet<PrivateParticipant> PrivateParticipants => Set<PrivateParticipant>();
+    public DbSet<BusinessParticipant> BusinessParticipants => Set<BusinessParticipant>();
+    public DbSet<Event> Events => Set<Event>();
+    public DbSet<EventParticipant> EventParticipants => Set<EventParticipant>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
