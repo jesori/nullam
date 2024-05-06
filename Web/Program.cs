@@ -1,5 +1,4 @@
 using Infrastructure;
-using Web.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,11 +9,24 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsAllowAll",
+        policyBuilder =>
+        {
+            policyBuilder.AllowAnyOrigin();
+            policyBuilder.AllowAnyHeader();
+            policyBuilder.AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 await app.InitialiseDatabaseAsync();
 app.UseSwagger();
 app.UseSwaggerUI();
+
+app.UseCors("CorsAllowAll");
 
 app.MapControllerRoute(
     name: "default",
