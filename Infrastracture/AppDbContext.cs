@@ -21,6 +21,24 @@ public class AppDbContext : DbContext, IAppDbContext
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+        modelBuilder.Entity<Event>()
+            .HasMany(e => e.EventParticipants)
+            .WithOne(c => c.Event)
+            .HasForeignKey(p => p.EventId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<PrivateParticipant>()
+            .HasMany(e => e.EventParticipants)
+            .WithOne(c => c.PrivateParticipant)
+            .HasForeignKey(p => p.EventId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<BusinessParticipant>()
+            .HasMany(e => e.EventParticipants)
+            .WithOne(c => c.BusinessParticipant)
+            .HasForeignKey(p => p.EventId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         base.OnModelCreating(modelBuilder);
     }
 }
