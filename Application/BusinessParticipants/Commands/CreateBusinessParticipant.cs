@@ -8,7 +8,8 @@ public record CreateBusinessParticipantCommand : IRequest<Guid>
     public string Name { get; set; } = default!;
 
     public string IdNumber{ get; set; } = default!;
-    public string ParticipantsNumber{ get; set; } = default!;
+
+    public int ParticipantsNumber{ get; set; } = default!;
 
     public PaymentMethod PaymentMethod { get; set; } = default!;
 

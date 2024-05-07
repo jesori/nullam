@@ -37,7 +37,6 @@ namespace Web.ApiControllers
             return Ok(await _mediator.Send(command));
         }
 
-        // GET: Eventes/Edit/5
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateEvent(Guid id, [FromBody] UpdateEventCommand command)
         {
@@ -89,7 +88,7 @@ namespace Web.ApiControllers
                 Id = id
             });
 
-            return  Ok(participants);
+            return Ok(participants);
         }
 
         [HttpGet("{id}/getAllParticipants")]
@@ -102,7 +101,8 @@ namespace Web.ApiControllers
 
             return  Ok(participants);
         }
-        [HttpDelete("{id}/removeParticipant")]
+
+        [HttpDelete("removeParticipant/{id}")]
         public async Task<ActionResult<List<GetAllParticipantsDto>>> RemoveParticipant(Guid id)
         {
             var affected = await _mediator.Send(new RemoveParticipantFromEventCommand(id));

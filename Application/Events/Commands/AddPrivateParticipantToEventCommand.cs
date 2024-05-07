@@ -29,7 +29,7 @@ public class AddParticipantToEventCommandHandler : IRequestHandler<AddPrivatePar
         var existingEventParticipant = await _context.EventParticipants
             .FirstOrDefaultAsync(ep =>
                     ep.EventId == command.AddParticipantToEventDto.EventId &&
-                    ep.BusinessParticipantId == command.AddParticipantToEventDto.PrivateParticipantId,
+                    ep.PrivateParticipantId == command.AddParticipantToEventDto.PrivateParticipantId,
                 cancellationToken);
 
         if (existingEventParticipant != null)

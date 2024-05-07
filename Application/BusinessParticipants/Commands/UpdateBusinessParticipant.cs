@@ -14,7 +14,7 @@ public record UpdateBusinessParticipantCommand : IRequest<Guid>
 
     public string IdNumber { get; set; } = default!;
 
-    public string ParticipantsNumber{ get; set; } = default!;
+    public int ParticipantsNumber{ get; set; } = default!;
 
     public PaymentMethod PaymentMethod { get; set; } = default!;
 
