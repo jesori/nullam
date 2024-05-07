@@ -71,7 +71,7 @@ namespace Web.ApiControllers
         }
 
         [HttpGet("{id}/getAllBusiness")]
-        public async Task<ActionResult<List<GetBusinessParticipantDto>>> AddBusinessarticipant(Guid id)
+        public async Task<ActionResult<List<GetBusinessParticipantDto>>> GetAllEventBusinessParticipants(Guid id)
         {
             var participants = await _mediator.Send(new GetAllEventBusinessPrticipantsQuery()
             {
@@ -82,7 +82,7 @@ namespace Web.ApiControllers
         }
 
         [HttpGet("{id}/getAllPrivate")]
-        public async Task<ActionResult<List<GetPrivateParticipantDto>>> AddPrivateParticipant(Guid id)
+        public async Task<ActionResult<List<GetPrivateParticipantDto>>> GetAllEventPrivateParticipants(Guid id)
         {
             var participants = await _mediator.Send(new GetAllEventPrivatePrticipantsQuery()
             {

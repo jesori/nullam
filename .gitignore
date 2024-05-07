@@ -44,6 +44,8 @@ x64/
 *.vspscc
 *.vssscc
 .builds
+Web/app.db-shm
+Web/app.db-wal
 
 # Visual C++ cache files
 ipch/

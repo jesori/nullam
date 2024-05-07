@@ -17,6 +17,7 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
+                    IdNumber = table.Column<string>(type: "TEXT", nullable: false),
                     ParticipantsNumber = table.Column<string>(type: "TEXT", nullable: false),
                     PaymentMethod = table.Column<int>(type: "INTEGER", nullable: false),
                     Info = table.Column<string>(type: "TEXT", maxLength: 5000, nullable: true)
@@ -73,7 +74,8 @@ namespace Infrastructure.Migrations
                         name: "FK_EventParticipants_BusinessParticipants_BusinessParticipantId",
                         column: x => x.BusinessParticipantId,
                         principalTable: "BusinessParticipants",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EventParticipants_Events_EventId",
                         column: x => x.EventId,
@@ -84,7 +86,8 @@ namespace Infrastructure.Migrations
                         name: "FK_EventParticipants_PrivateParticipants_PrivateParticipantId",
                         column: x => x.PrivateParticipantId,
                         principalTable: "PrivateParticipants",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

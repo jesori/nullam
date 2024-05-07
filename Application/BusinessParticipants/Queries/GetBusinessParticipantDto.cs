@@ -8,6 +8,8 @@ public class GetBusinessParticipantDto
     public Guid Id { get; set; }
 
     public string? Name { get; set; } 
+
+    public string? IdNumber { get; set; } 
     
     public string? ParticipantsNumber { get; set; }
 

@@ -3,6 +3,7 @@ using System;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240507092838_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -21,6 +24,10 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("IdNumber")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Info")
@@ -128,7 +135,8 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Entities.BusinessParticipant", "BusinessParticipant")
                         .WithMany("EventParticipants")
-                        .HasForeignKey("BusinessParticipantId");
+                        .HasForeignKey("BusinessParticipantId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Domain.Entities.Event", "Event")
                         .WithMany("EventParticipants")
@@ -138,7 +146,8 @@ namespace Infrastructure.Migrations
 
                     b.HasOne("Domain.Entities.PrivateParticipant", "PrivateParticipant")
                         .WithMany("EventParticipants")
-                        .HasForeignKey("PrivateParticipantId");
+                        .HasForeignKey("PrivateParticipantId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("BusinessParticipant");
 

@@ -12,6 +12,8 @@ public record UpdateBusinessParticipantCommand : IRequest<Guid>
 
     public string Name { get; set; } = default!;
 
+    public string IdNumber { get; set; } = default!;
+
     public string ParticipantsNumber{ get; set; } = default!;
 
     public PaymentMethod PaymentMethod { get; set; } = default!;
@@ -37,6 +39,7 @@ public class UpdateBusinessParticipantCommandHandler : IRequestHandler<UpdateBus
         Guard.Against.NotFound(request.Id, entity);
 
         entity.Name = request.Name;
+        entity.IdNumber = request.IdNumber;
         entity.ParticipantsNumber = request.ParticipantsNumber;
         entity.PaymentMethod = request.PaymentMethod;
         entity.Info = request.Info;

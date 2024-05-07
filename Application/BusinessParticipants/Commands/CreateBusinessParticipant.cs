@@ -7,6 +7,7 @@ public record CreateBusinessParticipantCommand : IRequest<Guid>
 {
     public string Name { get; set; } = default!;
 
+    public string IdNumber{ get; set; } = default!;
     public string ParticipantsNumber{ get; set; } = default!;
 
     public PaymentMethod PaymentMethod { get; set; } = default!;
@@ -29,6 +30,7 @@ public class CreateBusinessParticipantCommandHandler : IRequestHandler<CreateBus
         BusinessParticipant businessParticipant = new()
         {
             Name = command.Name,
+            IdNumber = command.IdNumber,
             ParticipantsNumber = command.ParticipantsNumber,
             PaymentMethod = command.PaymentMethod,
             Info = command.Info
