@@ -52,7 +52,7 @@ namespace Web.ApiControllers
             return NoContent();
         }
 
-        [HttpPost("addBusiness")]
+        [HttpPost("{id}/addBusiness")]
         public async Task<ActionResult> AddBusinessParticipant([FromBody] AddBusinessParticipantToEventDto businessParticipantToEventDto)
         {
             return Ok(await _mediator.Send(new AddBusinessParticipantToEventCommand
@@ -61,7 +61,7 @@ namespace Web.ApiControllers
             }));
         }
 
-        [HttpPost("addPrivate")]
+        [HttpPost("{id}/addPrivate")]
         public async Task<ActionResult> AddPrivateParticipant([FromBody] AddPrivateParticipantToEventDto privateParticipantToEventDto)
         {
             return Ok(await _mediator.Send(new AddPrivateParticipantToEventCommand
@@ -90,6 +90,24 @@ namespace Web.ApiControllers
             });
 
             return  Ok(participants);
+        }
+
+        [HttpGet("{id}/getAllParticipants")]
+        public async Task<ActionResult<List<GetAllParticipantsDto>>> GetAllParticipants(Guid id)
+        {
+            var participants = await _mediator.Send(new GetAllEventParticipantsQuery()
+            {
+                Id = id
+            });
+
+            return  Ok(participants);
+        }
+        [HttpDelete("{id}/removeParticipant")]
+        public async Task<ActionResult<List<GetAllParticipantsDto>>> RemoveParticipant(Guid id)
+        {
+            var affected = await _mediator.Send(new RemoveParticipantFromEventCommand(id));
+
+            return affected == 1 ? Ok() : NotFound();
         }
     }
 }

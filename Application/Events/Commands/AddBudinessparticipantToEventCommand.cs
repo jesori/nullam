@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Ardalis.GuardClauses;
-using Domain.Enums;
+﻿using Ardalis.GuardClauses;
 
 namespace Application.Events.Commands;
 

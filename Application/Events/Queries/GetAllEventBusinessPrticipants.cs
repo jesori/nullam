@@ -12,12 +12,12 @@ public record GetAllEventBusinessPrticipantsQuery : IRequest<List<GetBusinessPar
     public Guid Id { get; set; }
 }
 
-public class GetAllEventBusinessPrticipantsQueryHandler : IRequestHandler<GetAllEventBusinessPrticipantsQuery, List<GetBusinessParticipantDto>>
+public class GetAllEventBusinessParticipantsQueryHandler : IRequestHandler<GetAllEventBusinessPrticipantsQuery, List<GetBusinessParticipantDto>>
 {
     private readonly IAppDbContext _context;
     private readonly IMapper _mapper;
 
-    public GetAllEventBusinessPrticipantsQueryHandler(IAppDbContext context, IMapper mapper)
+    public GetAllEventBusinessParticipantsQueryHandler(IAppDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
