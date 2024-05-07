@@ -26,6 +26,17 @@ public class AddParticipantToEventCommandHandler : IRequestHandler<AddPrivatePar
         Guard.Against.NotFound(command.AddParticipantToEventDto.PrivateParticipantId, participant);
         Guard.Against.NotFound(command.AddParticipantToEventDto.EventId, ev);
 
+        var existingEventParticipant = await _context.EventParticipants
+            .FirstOrDefaultAsync(ep =>
+                    ep.EventId == command.AddParticipantToEventDto.EventId &&
+                    ep.BusinessParticipantId == command.AddParticipantToEventDto.PrivateParticipantId,
+                cancellationToken);
+
+        if (existingEventParticipant != null)
+        {
+            return existingEventParticipant.Id;
+        }
+
         EventParticipant eventParticipant = new()
         {
             EventId = command.AddParticipantToEventDto.EventId,
