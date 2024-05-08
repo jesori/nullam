@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240507153728_InitialCreate")]
+    [Migration("20240508184746_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -38,9 +38,8 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ParticipantsNumber")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ParticipantsNumber")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("PaymentMethod")
                         .HasColumnType("INTEGER");

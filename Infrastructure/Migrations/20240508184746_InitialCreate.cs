@@ -18,7 +18,7 @@ namespace Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     IdNumber = table.Column<string>(type: "TEXT", nullable: false),
-                    ParticipantsNumber = table.Column<string>(type: "TEXT", nullable: false),
+                    ParticipantsNumber = table.Column<int>(type: "INTEGER", nullable: false),
                     PaymentMethod = table.Column<int>(type: "INTEGER", nullable: false),
                     Info = table.Column<string>(type: "TEXT", maxLength: 5000, nullable: true)
                 },

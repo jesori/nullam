@@ -34,7 +34,7 @@ public class UpdateEventCommandHandler : IRequestHandler<UpdateEventCommand, Gui
         Guard.Against.NotFound(request.Id, entity);
 
         entity.Name = request.Name;
-        entity.Date = request.Date;
+        entity.Date = request.Date.ToLocalTime();
         entity.Location = request.Location;
         entity.Info = request.Info;
         await _context.SaveChangesAsync(cancellationToken);

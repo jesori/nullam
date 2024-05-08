@@ -35,9 +35,8 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ParticipantsNumber")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ParticipantsNumber")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("PaymentMethod")
                         .HasColumnType("INTEGER");

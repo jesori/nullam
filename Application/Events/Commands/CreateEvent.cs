@@ -27,7 +27,7 @@ public class CreateEventCommandHandler : IRequestHandler<CreateEventCommand, Gui
         Event Event = new()
         {
             Name = command.Name,
-            Date = command.Date,
+            Date = command.Date.ToLocalTime(),
             Location = command.Location,
             Info = command.Info
         };
