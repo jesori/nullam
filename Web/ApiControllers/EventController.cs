@@ -34,7 +34,7 @@ namespace Web.ApiControllers
         [HttpPost]
         public async Task<ActionResult<int>> CreateEvent([FromBody] CreateEventCommand command)
         {
-            return Ok(await _mediator.Send(command));
+                return Ok(await _mediator.Send(command));
         }
 
         [HttpPut("{id}")]
