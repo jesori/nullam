@@ -21,41 +21,24 @@ public class AppDbContext : DbContext, IAppDbContext
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+
         modelBuilder.Entity<EventParticipant>()
-            .HasOne(ep => ep.Event)
+            .HasOne(e => e.Event)
             .WithMany(e => e.EventParticipants)
-            .HasForeignKey(ep => ep.EventId)
+            .HasForeignKey(i => i.EventId)
             .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<EventParticipant>()
-            .HasOne(ep => ep.PrivateParticipant)
-            .WithMany()
-            .HasForeignKey(ep => ep.PrivateParticipantId)
+            .HasOne(e => e.PrivateParticipant)
+            .WithMany(e => e.EventParticipants)
+            .HasForeignKey(i => i.PrivateParticipantId)
             .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<EventParticipant>()
-            .HasOne(ep => ep.BusinessParticipant)
-            .WithMany()
-            .HasForeignKey(ep => ep.BusinessParticipantId)
+            .HasOne(e => e.BusinessParticipant)
+            .WithMany(e => e.EventParticipants)
+            .HasForeignKey(i => i.BusinessParticipantId)
             .OnDelete(DeleteBehavior.Cascade);
-
-        modelBuilder.Entity<Event>()
-            .HasMany(e => e.EventParticipants)
-            .WithOne(ep => ep.Event)
-            .HasForeignKey(ep => ep.EventId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        modelBuilder.Entity<PrivateParticipant>()
-            .HasMany(pp => pp.EventParticipants)
-            .WithOne(ep => ep.PrivateParticipant)
-            .HasForeignKey(ep => ep.PrivateParticipantId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        modelBuilder.Entity<BusinessParticipant>()
-            .HasMany(bp => bp.EventParticipants)
-            .WithOne(ep => ep.BusinessParticipant)
-            .HasForeignKey(ep => ep.BusinessParticipantId)
-            .OnDelete(DeleteBehavior.Cascade); 
 
         base.OnModelCreating(modelBuilder);
     }
