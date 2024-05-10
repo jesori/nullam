@@ -50,6 +50,10 @@ Allows viewing and editing of participant details originally entered during part
 
 # Run Application
 
+## Clone
+
+Run `git clone https://github.com/jesori/nullam.git --recursive`
+
 ## Backend
 From root folder navigate to `Wed` project and run `dotnet run` It will run backend on port `5180`.
 
