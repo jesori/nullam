@@ -13,11 +13,11 @@ This is a web application developed to manage guest registrations for events, al
 
 ## Architecture
 
-The application follows clean architecture design principles and utilizes a layered architecture with appropriate design patterns such as weak coupling between layers, dependency injection, and inversion of control. 
+The application follows clean architecture design principles and utilizes a layered architecture with appropriate design principles such as weak coupling between layers, dependency injection, and inversion of control. 
 
 ### Domain Layer: 
 
-Contains the business logic and entities. It’s the base layer with no dependencies on other layers.
+Contains entities and defines business rules of the application. It’s the base layer with no dependencies on other layers.
 
 ![ERD diagram](./assets/databaseerd.png)
 
